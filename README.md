@@ -15,6 +15,12 @@ To install all ruby dependencies for this workshop we use [Bundler](http://bundl
 gem install bundler
 ```
 
+To save the minimal data that is needed for the workshop Sqlite3 is used. To install Sqlite run the following command:
+
+```bash
+sudo apt-get install sqlite3 libsqlite3-dev
+```
+
 ## Setup
 
 To setup this workshop from scratch run te following commands:
