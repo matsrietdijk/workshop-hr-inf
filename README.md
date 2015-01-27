@@ -4,7 +4,7 @@
 
 This workshop needs the following software:
 
-* Ruby v.2+
+* Ruby v2+
 * Haskell (GHC v7.8+, Cabal v1.18+)
 
 ## Setup
@@ -16,7 +16,7 @@ git clone https://github.com/matsrietdijk/workshop-hr-inf.git workshop
 cd workshop
 ```
 
-## Running the ruby application
+## Running the Ruby application
 
 ```bash
 cd ruby
