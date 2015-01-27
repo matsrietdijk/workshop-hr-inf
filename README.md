@@ -1,5 +1,7 @@
 # Workshop HR - Informatica
 
+Code base for a workshop to introduce potential new students to computer science at Hogeschool Rotterdam.
+
 ## Prerequisites
 
 This workshop needs the following programming languages to be available:
