@@ -6,9 +6,13 @@
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE NoImplicitPrelude #-}
 
 import Yesod
-import Data.Text
+import ClassyPrelude
+import Data.Text (Text)
+import Data.Int
 import Database.Persist
 import Database.Persist.Sqlite
 
@@ -48,9 +52,19 @@ getHomeR = do
 main :: IO ()
 main = do
     pool <- createPoolConfig sqlConf
-    runPool sqlConf (runMigration migrateAll) pool
+    let runAll = mapM_ (flip runSqlPool pool)
+    -- let runDB = flip runSqlPool pool
+    runAll [ runMigration migrateAll
+           , runSeed 3 10
+           ]
     warp 3000 App
               { connPool = pool
               , persistConfig = sqlConf
               }
-  where sqlConf = SqliteConf "workshop.sqlite3" 1
+  where sqlConf = SqliteConf ":memory:" 1
+        runSeed authors articles = do
+            mapM_ (insert_ . Author . (<>) "Author " . tshow) [1..authors]
+            mapM_ (\(a, b) -> insert_ $ Article
+                                            ("Article " <> tshow a <> "." <> tshow b)
+                                            (Textarea "Lorem ipsum")
+                                            (toSqlKey a)) [(a, b)| a <- [1..authors], b <-[1..articles]]
