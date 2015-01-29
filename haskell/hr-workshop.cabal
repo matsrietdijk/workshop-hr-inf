@@ -24,6 +24,7 @@ executable hr-workshop
                      , classy-prelude    >= 0.10 && < 0.11
                      , text              >= 1.2  && < 1.3
                      , yesod             >= 1.4  && < 1.5
+                     , yesod-static      >= 1.4  && < 1.5
                      , persistent        >= 2.0  && < 2.2
                      , persistent-sqlite >= 2.0  && < 2.2
   -- hs-source-dirs:
