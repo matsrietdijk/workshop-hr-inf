@@ -32,7 +32,8 @@ Article
 |]
 
 mkYesod "App" [parseRoutes|
-/ HomeR GET
+/      HomeR GET
+/about AboutR GET
 |]
 
 instance Yesod App
@@ -48,6 +49,11 @@ getHomeR = do
   where
     -- the function "title" returning the text "Hello World!"
     title = "Hello World!" :: Text
+
+getAboutR :: Handler Html
+getAboutR = do
+    (authors :: [Entity Author]) <- runDB $ selectList [] [Desc AuthorName]
+    defaultLayout $(whamletFile "views/about.hamlet")
 
 main :: IO ()
 main = do
