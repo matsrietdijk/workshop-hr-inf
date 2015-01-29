@@ -8,10 +8,13 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE ViewPatterns #-}
 
 import Yesod
 import Yesod.Static
-import Text.Hamlet (hamletFile)
+import Text.Hamlet                        (hamletFile)
+import Text.Markdown
+import qualified Data.Text.Lazy.IO as TIO (readFile)
 import ClassyPrelude
 import Data.Text (Text)
 import Data.Int
@@ -37,9 +40,10 @@ Article
 |]
 
 mkYesod "App" [parseRoutes|
-/static StaticR Static getStatic
-/       HomeR GET
-/about  AboutR GET
+/static       StaticR     Static getStatic
+/             HomeR       GET
+/task/#Int    AssignmentR GET
+/about        AboutR      GET
 |]
 
 instance Yesod App where
@@ -60,6 +64,12 @@ getHomeR = do
   where
     -- the function "title" returning the text "Hello World!"
     title = "Hello World!" :: Text
+
+getAssignmentR :: Int -> Handler Html
+getAssignmentR num = do
+  contentRaw <- liftIO $ TIO.readFile $ "../assignments/assignment-" ++ (show num) ++ ".md"
+  let md = markdown def contentRaw
+  defaultLayout $(whamletFile "views/assignment.hamlet")
 
 getAboutR :: Handler Html
 getAboutR = do
