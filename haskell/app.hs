@@ -18,7 +18,7 @@ import Data.Int
 import Database.Persist
 import Database.Persist.Sqlite
 
-$(staticFiles "static")
+$(staticFiles "../static")
 
 data App = App
            { connPool :: PersistConfigPool SqliteConf
@@ -69,7 +69,7 @@ getAboutR = do
 main :: IO ()
 main = do
     pool <- createPoolConfig sqlConf
-    s <- static "static"
+    s <- static "../static"
     let runAll = mapM_ (flip runSqlPool pool)
     -- let runDB = flip runSqlPool pool
     runAll [ runMigration migrateAll
