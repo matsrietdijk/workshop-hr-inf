@@ -1,4 +1,4 @@
-# Assignment 1 - Changing the title on the homepage
+# Assignment 1 - Changing the title
 
 One of your clients is unhappy about the title on his websites homepage. Instead of the title being "Hello World!" the client would like it to be "Our Website".
 
