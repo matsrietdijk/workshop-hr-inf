@@ -1,0 +1,8 @@
+$newline never
+$doctype 5
+<html>
+  <head>
+    <title>#{pageTitle p}
+    ^{pageHead p}
+  <body>
+    ^{pageBody p}

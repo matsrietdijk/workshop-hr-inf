@@ -10,15 +10,20 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
 import Yesod
+import Yesod.Static
+import Text.Hamlet (hamletFile)
 import ClassyPrelude
 import Data.Text (Text)
 import Data.Int
 import Database.Persist
 import Database.Persist.Sqlite
 
+$(staticFiles "static")
+
 data App = App
            { connPool :: PersistConfigPool SqliteConf
            , persistConfig :: SqliteConf
+           , getStatic :: Static
            }
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
@@ -32,11 +37,17 @@ Article
 |]
 
 mkYesod "App" [parseRoutes|
-/      HomeR GET
-/about AboutR GET
+/static StaticR Static getStatic
+/       HomeR GET
+/about  AboutR GET
 |]
 
-instance Yesod App
+instance Yesod App where
+    defaultLayout widget = do
+        p <- widgetToPageContent $ do
+            addStylesheet $ StaticR css_bootstrap_css
+            widget
+        withUrlRenderer $(hamletFile "views/layout.hamlet")
 
 instance YesodPersist App where
     type YesodPersistBackend App = SqlBackend
@@ -58,6 +69,7 @@ getAboutR = do
 main :: IO ()
 main = do
     pool <- createPoolConfig sqlConf
+    s <- static "static"
     let runAll = mapM_ (flip runSqlPool pool)
     -- let runDB = flip runSqlPool pool
     runAll [ runMigration migrateAll
@@ -66,6 +78,7 @@ main = do
     warp 4567 App
               { connPool = pool
               , persistConfig = sqlConf
+              , getStatic = s
               }
   where sqlConf = SqliteConf ":memory:" 1
         runSeed authors articles = do
