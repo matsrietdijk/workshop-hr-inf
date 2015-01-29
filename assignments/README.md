@@ -13,3 +13,4 @@ The Ruby applications might be easier to understand when your new to programming
 ## Starting easy
 
 * [Changing the title on the homepage](assignment-1.md)
+* [Reordering the authors](assignment-2.md)

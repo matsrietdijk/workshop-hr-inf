@@ -1,0 +1,4 @@
+<h1>Our authors
+<ul>
+  $forall Entity authorId author <- authors
+    <li>#{authorName author}
