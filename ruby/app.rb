@@ -4,6 +4,7 @@ require "bundler/setup"
 require "sinatra/base"
 require "sinatra/activerecord"
 
+ActiveRecord::Base.logger = nil
 ActiveRecord::Base.establish_connection adapter: "sqlite3", database: "workshop.sqlite3"
 # create database tables
 class DatabaseMigration < ActiveRecord::Migration
