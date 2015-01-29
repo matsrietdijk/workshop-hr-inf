@@ -30,7 +30,13 @@ git clone https://github.com/matsrietdijk/workshop-hr-inf.git workshop
 cd workshop
 ```
 
-## Running the Ruby application
+## Running the applications
+
+To preview the default applications the applications should be run. Both applications can be visited on [http://0.0.0.0:4567](http://0.0.0.0:4567/) when running. Because both use the same port only one application can be active at a time.
+
+### Running the Ruby application
+
+To run the Ruby application the following commands should be executed from the projects root directory:
 
 ```bash
 cd ruby
@@ -38,7 +44,9 @@ bundle install
 ruby app.rb
 ```
 
-## Running the Haskell application
+### Running the Haskell application
+
+To run the Haskell application the following commands should be executed from the projects root directory:
 
 ```bash
 cd haskell
