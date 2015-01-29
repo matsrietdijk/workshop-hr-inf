@@ -57,7 +57,7 @@ main = do
     runAll [ runMigration migrateAll
            , runSeed 3 10
            ]
-    warp 3000 App
+    warp 4567 App
               { connPool = pool
               , persistConfig = sqlConf
               }
