@@ -50,5 +50,10 @@ class App < Sinatra::Base
     erb :index
   end
 
+  get "/about" do
+    @authors = Author.all.order(name: :desc)
+    erb :about
+  end
+
   run!
 end
