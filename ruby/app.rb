@@ -4,18 +4,43 @@ require "bundler/setup"
 require "sinatra/base"
 require "sinatra/activerecord"
 
+ActiveRecord::Base.establish_connection adapter: "sqlite3", database: "workshop.sqlite3"
+# create database tables
+class DatabaseMigration < ActiveRecord::Migration
+  drop_table :articles if ActiveRecord::Base.connection.table_exists? :articles
+  create_table :articles do |t|
+    t.string :title
+    t.text :content
+  end
+
+  drop_table :authors if ActiveRecord::Base.connection.table_exists? :authors
+  create_table :authors do |t|
+    t.string :name
+  end
+
+  add_reference :articles, :author
+end
+# models
 class Author < ActiveRecord::Base
   validates_presence_of :name
+  has_many :articles, dependent: :destroy
 end
 
 class Article < ActiveRecord::Base
   validates_presence_of :title, :content
+  belongs_to :author
 end
+# seed database
+(1..3).each do |aut|
+  author = Author.create name: "Author #{aut}"
 
+  (1..10).each do |art|
+    Article.create author_id: author.id, title: "Article #{author.id}.#{art}", content: "Lorem ipsum"
+  end
+end
+# application
 class App < Sinatra::Base
   register Sinatra::ActiveRecordExtension
-
-  set :database, { adapter: "sqlite3", database: ":memory:" }
 
   get "/" do
     # the variable "title" containing the text "Hello World!"
