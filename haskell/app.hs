@@ -10,6 +10,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE ViewPatterns #-}
 
+import System.Directory                   (doesFileExist)
 import Yesod
 import Yesod.Static
 import Text.Hamlet                        (hamletFile)
@@ -79,19 +80,22 @@ getAboutR = do
 
 main :: IO ()
 main = do
+    db <- doesFileExist "workshop.sqlite3"
     pool <- createPoolConfig sqlConf
     s <- static "../static"
-    let runAll = mapM_ (flip runSqlPool pool)
-    -- let runDB = flip runSqlPool pool
-    runAll [ runMigration migrateAll
-           , runSeed 3 10
-           ]
+    -- let runAll = mapM_ (flip runSqlPool pool)
+    let runDB = flip runSqlPool pool
+    runDB $ runMigration migrateAll
+    case db of
+      True  -> return ()
+      False -> runDB $ runSeed 3 10
+
     warp 4567 App
               { connPool = pool
               , persistConfig = sqlConf
               , getStatic = s
               }
-  where sqlConf = SqliteConf ":memory:" 1
+  where sqlConf = SqliteConf "workshop.sqlite3" 1
         runSeed authors articles = do
             mapM_ (insert_ . Author . (<>) "Author " . tshow) [1..authors]
             mapM_ (\(a, b) -> insert_ $ Article
