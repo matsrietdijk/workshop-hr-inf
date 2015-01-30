@@ -5,4 +5,5 @@ $doctype 5
     <title>#{pageTitle p}
     ^{pageHead p}
   <body>
-    ^{pageBody p}
+    <div class="container">
+      ^{pageBody p}

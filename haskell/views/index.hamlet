@@ -1,1 +1,13 @@
-#{title}
+<div class="jumbotron">
+  <h1>#{title}
+
+<p class="lead">
+  Finish all assignments in 30 minutes.
+  The code for this application is written in <code>Haskell</code>.
+  Source code for the application is in the <code>app.hs</code> file.
+
+<p>All assignments:
+
+<ol>
+  <li><a href="task/1">Assignment 1
+  <li><a href="task/2">Assignment 2
