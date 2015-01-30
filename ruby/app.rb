@@ -44,6 +44,8 @@ end
 class App < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
+  set :public_folder ,"../static"
+
   get "/" do
     # the variable "title" containing the text "Hello World!"
     @title = "Hello World!"
