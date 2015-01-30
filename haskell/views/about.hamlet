@@ -3,4 +3,3 @@
   $forall Entity authorId author <- authors
     <li>
       #{authorName author}
-      (#{count articles authorId} articles)
