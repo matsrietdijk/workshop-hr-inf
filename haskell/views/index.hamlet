@@ -9,6 +9,6 @@
 <p>All assignments:
 
 <ol>
-  $forall id <- [1,2]
+  $forall id <- [1,2,3]
     <li>
       <a href="task/#{show id}">Assignment #{show id}

@@ -14,3 +14,7 @@ The Ruby applications might be easier to understand when your new to programming
 
 * [Changing the title on the homepage](assignment-1.md)
 * [Reordering the authors](assignment-2.md)
+
+## Getting harder
+
+* [Adding article count to authors](assignment-3.md)
