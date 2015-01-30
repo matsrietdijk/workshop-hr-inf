@@ -13,7 +13,7 @@ Your coworker also has written a count function that count all articles of an au
 
     count articles authorid = length $ filter (\(Entity _ x) -> articleAuthorId x == authorid) articles
 
-But he has forgotten to actually use the count function in the HTML template `about.hamlet`. Use the `count` function with the `articles` and `authorId` variables to display the number of articles of each author.
+But he has forgotten to actually use the count function in the HTML template `about.hamlet` view. Use the `count` function with the `articles` and `authorId` variables to display the number of articles of each author.
 
 ## Ruby
 
