@@ -76,7 +76,10 @@ getAssignmentR num = do
 getAboutR :: Handler Html
 getAboutR = do
     (authors :: [Entity Author]) <- runDB $ selectList [] [Desc AuthorName]
+    (articles :: [Entity Article]) <- runDB $ selectList [] []
     defaultLayout $(whamletFile "views/about.hamlet")
+    where
+      count articles authorid = length $ filter (\(Entity _ x) -> articleAuthorId x == authorid) articles
 
 main :: IO ()
 main = do

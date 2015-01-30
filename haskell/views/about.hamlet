@@ -1,4 +1,6 @@
 <h1>Our authors
 <ul>
   $forall Entity authorId author <- authors
-    <li>#{authorName author}
+    <li>
+      #{authorName author}
+      (#{count articles authorId} articles)
