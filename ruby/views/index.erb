@@ -1,1 +1,16 @@
-<%= @title %>
+<div class="jumbotron">
+    <h1><%= @title %></h1>
+</div>
+
+<p class="lead">
+    Finish all assignments in 30 minutes.
+    The code for this application is written in <code>Ruby</code>.
+    Source code for this application is in the <code>app.rb</code> file.
+</p>
+<ol>
+    <% (1..2).each do |id| %>
+        <li>
+            <a href="<%= "task/#{id}" %>">Assignment <%= id %></a>
+        </li>
+    <% end %>
+</ol>

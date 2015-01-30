@@ -3,6 +3,7 @@ require "bundler/setup"
 
 require "sinatra/base"
 require "sinatra/activerecord"
+require "redcarpet"
 
 ActiveRecord::Base.logger = nil
 ActiveRecord::Base.establish_connection adapter: "sqlite3", database: "workshop.sqlite3"
@@ -43,6 +44,8 @@ end
 class App < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
+  set :public_folder ,"../static"
+
   get "/" do
     # the variable "title" containing the text "Hello World!"
     @title = "Hello World!"
@@ -53,6 +56,14 @@ class App < Sinatra::Base
   get "/about" do
     @authors = Author.all.order(name: :desc)
     erb :about
+  end
+
+  get "/task/:id" do
+    id = params[:id]
+    raw = File.read("../assignments/assignment-#{id}.md")
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    @md = markdown.render(raw)
+    erb :task
   end
 
   run!
