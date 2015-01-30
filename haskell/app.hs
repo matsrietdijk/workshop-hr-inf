@@ -50,6 +50,7 @@ instance Yesod App where
     defaultLayout widget = do
         p <- widgetToPageContent $ do
             addStylesheet $ StaticR css_bootstrap_css
+            addStylesheet $ StaticR css_app_css
             widget
         withUrlRenderer $(hamletFile "views/layout.hamlet")
 
