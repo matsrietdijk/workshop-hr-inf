@@ -16,6 +16,7 @@ build-type:          Simple
 -- extra-source-files:
 cabal-version:       >=1.10
 
+
 executable hr-workshop
   main-is:             app.hs
   -- other-modules:
@@ -29,5 +30,18 @@ executable hr-workshop
                      , markdown          >= 0.1  && < 0.2
                      , persistent        >= 2.0  && < 2.2
                      , persistent-sqlite >= 2.0  && < 2.2
+                     , directory          >= 1.2  && < 1.3
   -- hs-source-dirs:
   default-language:    Haskell2010
+  -- language extensions:
+  extensions:          OverloadedStrings
+                      ,QuasiQuotes
+                      ,TemplateHaskell
+                      ,TypeFamilies
+                      ,ScopedTypeVariables
+                      ,GADTs
+                      ,MultiParamTypeClasses
+                      ,GeneralizedNewtypeDeriving
+                      ,FlexibleInstances
+                      ,NoImplicitPrelude
+                      ,ViewPatterns
