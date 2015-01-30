@@ -43,6 +43,7 @@ Article
 mkYesod "App" [parseRoutes|
 /static       StaticR     Static getStatic
 /             HomeR       GET
+/articles     ArticlesR   GET
 /task/#Int    AssignmentR GET
 /about        AboutR      GET
 |]
@@ -80,6 +81,11 @@ getAboutR = do
     defaultLayout $(whamletFile "views/about.hamlet")
     where
       count articles authorid = length $ filter (\(Entity _ x) -> articleAuthorId x == authorid) articles
+
+getArticlesR :: Handler Html
+getArticlesR = do
+  (articles :: [Entity Article]) <- runDB $ selectList [] []
+  defaultLayout $(whamletFile "views/articles.hamlet")
 
 main :: IO ()
 main = do

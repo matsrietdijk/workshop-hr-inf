@@ -18,3 +18,9 @@ The Ruby applications might be easier to understand when your new to programming
 ## Getting harder
 
 * [Adding article count to authors](assignment-3.md)
+
+
+# TODO
+
+* Assignment 4: Reverse article titles
+* Assignment 5: Implement handler + route that displays your name

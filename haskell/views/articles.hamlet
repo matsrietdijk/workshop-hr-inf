@@ -1,0 +1,6 @@
+<p .lead>All articles
+
+<ul>
+  $forall Entity articleId article <- articles
+    <li>
+      #{articleTitle article}
