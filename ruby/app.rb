@@ -66,5 +66,10 @@ class App < Sinatra::Base
     erb :task
   end
 
+  get "/articles" do
+    @articles = Article.all
+    erb :articles
+  end
+
   run!
 end

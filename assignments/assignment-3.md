@@ -17,4 +17,8 @@ But he has forgotten to actually use the count function in the HTML template `ab
 
 ## Ruby
 
-To be added
+The `get "/about"` function call handles the about page. Inside this function the authors are fetched from the database with the following line:
+
+    @authors = Author.all.order(name: :desc)
+
+The `author` model already has a function build in to get all articles for an author. This function is called `articles` and should be performed on an `author` object. The result of the `articles` function is an array containing the articles, to count the number of articles the `count` function should be used on this array. All those function calls can be done inside the template, so the handler doesn't have to be changed.

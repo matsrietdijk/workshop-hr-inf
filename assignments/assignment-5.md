@@ -23,4 +23,10 @@ The `getAssignmentR` function can be used as inspiration for parameter handling.
 
 ## Ruby
 
-To be added
+In Ruby this can be achieved by adding a `get` block within the class `App`. The `get "/task/:id` route is used to show all assignments. When navigating to `/task/1` the first assignments is loaded. This same approach can be used for ready a name from an url.
+
+Create `get` block for the `name` route which accepts a name as a parameter. A template has already been made to display the this name. To use this template add the following line to the bottom of the new handler block:
+
+    erb :name
+
+The `get "/task/:id"` block can be used as inspiration for parameter handling. The following section in the `sinatra` documentation shows how to handle parameters: [http://www.sinatrarb.com/intro.html#Accessing%20Variables%20in%20Templates](http://www.sinatrarb.com/intro.html#Accessing%20Variables%20in%20Templates)
