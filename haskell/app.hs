@@ -17,7 +17,7 @@ import Text.Hamlet                        (hamletFile)
 import Text.Markdown
 import qualified Data.Text.Lazy.IO as TIO (readFile)
 import ClassyPrelude
-import Data.Text (Text)
+import Data.Text                   hiding (length, filter)
 import Data.Int
 import Database.Persist
 import Database.Persist.Sqlite
