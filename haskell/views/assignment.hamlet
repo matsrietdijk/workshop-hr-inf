@@ -1,1 +1,4 @@
 #{md}
+
+$if (num > 0) && (num < 5)
+  <a href=@{AssignmentR $ num + 1}>&gt; Next assignment

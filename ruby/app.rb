@@ -59,8 +59,8 @@ class App < Sinatra::Base
   end
 
   get "/task/:id" do
-    id = params[:id]
-    raw = File.read("../assignments/assignment-#{id}.md")
+    @id = params[:id].to_i
+    raw = File.read("../assignments/assignment-#{@id}.md")
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     @md = markdown.render(raw)
     erb :task

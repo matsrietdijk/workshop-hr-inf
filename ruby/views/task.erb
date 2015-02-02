@@ -1,1 +1,5 @@
 <%= @md %>
+
+<% if @id > 0 && @id < 5 %>
+  <a href="/task/<%= @id + 1 %>">&gt; Next assignment</a>
+<% end %>
