@@ -21,6 +21,18 @@ To save the minimal data that is needed for the workshop [Sqlite3](http://www.sq
 sudo apt-get install sqlite3 libsqlite3-dev
 ```
 
+To use version control we used Git. To install Git run the folloing command:
+
+```bash
+sudo apt-get install git
+```
+
+After installing Git this workshop can be cloned to your computer using the following command:
+
+```bash
+git clone https://github.com/matsrietdijk/workshop-hr-inf.git
+```
+
 ## Setup
 
 To setup this workshop from scratch run te following commands:
